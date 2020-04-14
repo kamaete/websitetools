@@ -1,0 +1,99 @@
+---
+title: "Embedding YouTube vidoes in Wordpress"
+author: ""
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_letter:
+    toc: false
+    # change to true for a self-contained document, but it'll be a litte slower for Pandoc to render
+    self_contained: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Embedding YouTube vidoes in Wordpress
+
+Below is a guide to embedding YouTube videos into a WordPress site using built-in WordPress tools. This document discusses three approaches to implementing this task in Wordpress, the pros and cons of each approach and applicable code that can be used (via copy paste onto Wordpress text editor) the different approaches.
+
+<br>
+
+## Approach 1: Simply copy paste relevant URL onto Wordpress text editor
+
+This approach is as simple as just copying the relevant YouTube video or playlist URL and then pasting it right on to the Wordpress Editor. Here, you need to make sure you paste it in Visual mode rather than in Text mode.
+
+So, if you wanted to embed the current full playlist of OSMA videos, just copy and paste the following:
+
+```html
+https://www.youtube.com/playlist?list=PLXOutfnelN0YDK2AIanp9Kvbr2Zk6AvbR
+```
+onto the editor for the page/post where you want it embedded.
+
+**Pros:** Easiest approach
+
+**Cons:** No options for re-sizing the embedded video (although Wordpress will automatically use a video size appropriate for your theme/template, sometimes it doesn't do it quite right or sometimes for style reasons, you can't change how it would look)
+
+<br>
+
+## Approach 2: Use `embed` shorcode built-in to Wordpress
+
+Wordpress has a built-in embed shortcode that can be used through the editor in Visual mode. Just click on the embed button on the menu ribbon of the Wordpress editor and enter the YouTube URL in the dialog box that will open and then the appropriate code will be written onto the Wordpress editor for the particular page.
+
+If you want to do this manually, the embed shortcode can be written onto the visual mode editor manually with the following syntax:
+
+```html
+[embed width="123" height="456"]YOUTUBE URL HERE[/embed]
+```
+
+replacing YOUTUBE URL HERE with the YouTube URL for the video or the playlist you want to embed.
+
+As you can see here, you have now the options to re-size the embeded video appropriate to your theme. Wordpress themes with narrow layouts will usually have a width of 300px to 400px whilst those with wider layouts can go from 500-700px. I would recommend starting with a width of 400px and a height of 350px and then play with the size depending on your preference.
+
+**Pros:** Gives more functionality to re-size video embed
+
+**Cons:** Can take longer to implement as there is more steps in the workflow
+
+<br>
+
+## Approach 3: Use the `<iframe>` HTML tag in Wordpress text mode
+
+This approach is relatively the more complex approach but offers the best customisation of the YouTube embed including adding privacy options for Google not to track those watching the videos.
+
+This approach will need to be done manually (i.e., manual typing of code to embed) and needs to be done in Text mode of the Wordpress editor.
+
+The basic syntax for the `<iframe>` tag is as follows:
+
+```html
+<iframe width="420" height="315"src="YOUR YOUTUBE URL HERE"></iframe>
+```
+replacing YOUR YOUTUBE URL HERE with the YouTube URL for the video or playlist.
+
+Syntax looks similar to the embed shorcode but need to be careful with the arguments added to the code and the quotation marks as these are critial when the code is being parsed/read.
+
+More complex iterations of the syntax that allows for more fine-tuned embeds are availabe such as the one below where the frameborder is removed and privacy mode is enabled:
+
+```html
+<iframe width="1440" height="762" src="YOUR YOUTUBE URL HERE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+```
+
+and this one where the video starts automatically when the page with the embed is visited:
+
+```html
+<iframe width="560" height="315" src="YOUR YOUTUBE URL HERE?&autoplay=1" frameborder="0" allowfullscreen></iframe>
+```
+
+Pros: ultimate customisation possible particulary with playlists
+
+Cons: Can be tricky especially if not familiar with HTML code
+
+<br>
+
+## Othere notes
+
+I have extracted all the URLs that are in the OSMA playlist now and put them all in a table which can help with the embedding process.
+
+I am unable to do it now but can do this tonight or tomorrow but I can use the list that I created and programmatically create the embed shortcode text and the iframe code for each of the youtube video based on the settings that you want.
+
